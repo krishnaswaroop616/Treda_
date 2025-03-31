@@ -107,10 +107,24 @@ app.post("/logout", (req, res) => {
 
 
 
-app.get("/getHoldings", async (req, res) => {
-    const allHoldings = await HoldingModel.find();
-    res.json(allHoldings);
+app.get("/getHoldings", async (req, res) => { 
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            return res.status(401).json({ message: "Unauthorized" });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decoded.userId; 
+
+        const userHoldings = await HoldingModel.find({ userId: userId }); 
+        res.json(userHoldings);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
 });
+
 
 
 
