@@ -6,7 +6,7 @@ const Dashboard = () => {
     const [userData,setUserData]=useState({ username: "", balance: 0 });
 
     async function getHoldings(){
-        const res=await axios.get("http://localhost:3002/getHoldings",{withCredentials:true});
+        const res=await axios.get("https://treda-krne.onrender.com/getHoldings",{withCredentials:true});
         const tempholdings=res.data;
         setAllHoldings([...tempholdings]);
         
@@ -14,7 +14,7 @@ const Dashboard = () => {
 
     async function getUserData() {
         try {
-            const res = await axios.get("http://localhost:3002/summary", { withCredentials: true });
+            const res = await axios.get("https://treda-krne.onrender.com/summary", { withCredentials: true });
             setUserData(res.data);
         } catch (error) {
             console.error("Error fetching user data:", error.message);
