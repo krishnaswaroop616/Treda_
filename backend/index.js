@@ -19,7 +19,7 @@ const { default: axios } = require("axios");
 
 const app = express();
 app.use(cors({
-    origin: "https://treda-u36u.vercel.app/", 
+    origin: "https://treda-u36u.vercel.app", 
     credentials: true,
 }));
 app.use(express.json());
