@@ -17,7 +17,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3002/signup", formData,{withCredentials:true});
+            const res = await axios.post("https://treda-krne.onrender.com/signup", formData,{withCredentials:true});
             console.log(res);
             alert(res.data.message);
             navigate("/login");
